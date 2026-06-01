@@ -1,4 +1,4 @@
-# Deepcut CLI
+# Deepcut Client
 
 This is the frontend for Deepcut, a dynamic web app built specifically for producers and beatmakers that are often looking for samples online. The app helps users discover lesser-known music ("deep cuts") randomly served by the [Deepcut API (Backend)](https://github.com/samyAlliche/deepcut). The API is connected to a database filled with youtube curated playlists.
 
