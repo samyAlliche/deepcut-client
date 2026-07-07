@@ -29,22 +29,11 @@ To get the frontend running locally, please follow these steps:
     npm install
     ```
 
-3.  **Set Up Environment Variables**
-    Create a `.env.local` file in the root and add a `SYNC_SECRET` variable with the same secret as in the backend.
-
-4.  **Start the Development Server**
+3.  **Start the Development Server**
     ```bash
     npm run dev
     ```
     Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Environment Variables
-
-The frontend requires the following environment variables to connect to the backend:
-
-| Variable      | Description                                                             |
-| :------------ | :---------------------------------------------------------------------- |
-| `SYNC_SECRET` | The secret you chose, must be the same in both the backend and frontend |
 
 ## Available Scripts
 

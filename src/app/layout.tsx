@@ -12,6 +12,7 @@ const figtree = Figtree({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://deepcut.twxntytwo.com"),
   title: "Deepcut - Random Samples From Curated YouTube Playlists",
   description: "Deepcut — random samples from curated YouTube playlists.",
   openGraph: {

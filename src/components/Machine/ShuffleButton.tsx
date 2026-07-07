@@ -1,20 +1,24 @@
 import React from "react";
+import clsx from "clsx";
 import { Button } from "../ui/button";
 
 interface ShuffleButtonProps {
   onClick: () => void;
   isLoading: boolean;
+  className?: string;
 }
 
 const ShuffleButton: React.FC<ShuffleButtonProps> = ({
   onClick,
   isLoading,
+  className,
 }) => {
   return (
-    <div className="relative">
+    <div className={clsx("relative", className)}>
       <Button
         variant={"shuffle"}
         size={"xl"}
+        className="w-full"
         onClick={onClick}
         disabled={isLoading}
       >
