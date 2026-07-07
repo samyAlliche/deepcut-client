@@ -11,7 +11,7 @@ const Footer = () => {
       text-olive text-sm font-extrabold mt-8 sm:mt-auto"
     >
       <div className="flex items-center space-x-2 order-2 md:order-1">
-        © 2025 deepcut
+        © {new Date().getFullYear()} deepcut
       </div>
       <div className="group flex items-center gap-2 order-1 md:order-2">
         <span>made with</span>

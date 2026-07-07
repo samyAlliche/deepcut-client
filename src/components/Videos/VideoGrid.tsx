@@ -1,14 +1,19 @@
 import Video from "@/types/video";
 import VideoCard from "./VideoCard";
 import clsx from "clsx";
-// import AdCard from "./AdCard";
 
 interface VideoGridProps {
   videos: Video[];
   isOneColumn: boolean;
+  /** sleeve colors reported by the machine, cycled across the cards */
+  discColors?: string[];
 }
 
-export default function VideoGrid({ videos, isOneColumn }: VideoGridProps) {
+export default function VideoGrid({
+  videos,
+  isOneColumn,
+  discColors,
+}: VideoGridProps) {
   const videoCount = videos.length;
 
   const gridTemplateColumns = () => {
@@ -23,6 +28,7 @@ export default function VideoGrid({ videos, isOneColumn }: VideoGridProps) {
     if (isOneColumn) return "grid-cols-1";
     return "grid-cols-2 sm:grid-cols-3";
   };
+
   return (
     <div
       className={clsx(
@@ -31,18 +37,19 @@ export default function VideoGrid({ videos, isOneColumn }: VideoGridProps) {
         gridDisplayMobile()
       )}
     >
-      {videos.map((video) => (
+      {videos.map((video, i) => (
         <VideoCard
           key={video.videoId}
           video={video}
+          index={i}
+          discColor={
+            discColors && discColors.length > 0
+              ? discColors[i % discColors.length]
+              : undefined
+          }
           className={clsx(videoCount == 1 && "sm:col-start-2 sm:col-end-2")}
         />
       ))}
-      {/* <AdCard
-        adClient={"ca-pub-6104349001448914"}
-        adSlot={"2984888733"}
-        adLayoutKey={"-6s+eg+1g-3d+2z"}
-      /> */}
     </div>
   );
 }

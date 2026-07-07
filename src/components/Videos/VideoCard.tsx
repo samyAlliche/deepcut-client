@@ -7,10 +7,18 @@ import { useState } from "react";
 interface VideoCardProps {
   video: Video;
   className?: string;
+  index?: number;
+  discColor?: string;
 }
 
-export default function VideoCard({ video, className }: VideoCardProps) {
+export default function VideoCard({
+  video,
+  className,
+  index = 0,
+  discColor,
+}: VideoCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [imgFailed, setImgFailed] = useState(false);
 
   return (
     <motion.a
@@ -21,6 +29,14 @@ export default function VideoCard({ video, className }: VideoCardProps) {
         "group relative overflow-hidden rounded-lg bg-card shadow-md",
         className
       )}
+      initial={{ opacity: 0, y: 26, scale: 0.94 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{
+        delay: index * 0.07,
+        type: "spring",
+        stiffness: 240,
+        damping: 22,
+      }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       whileHover={{
@@ -35,12 +51,35 @@ export default function VideoCard({ video, className }: VideoCardProps) {
     >
       <div className="relative w-full aspect-square">
         <Image
-          src={video.thumbnail?.url || "/placeholder.jpg"}
+          src={imgFailed ? "/placeholder.jpg" : video.thumbnail?.url || "/placeholder.jpg"}
           alt={`Thumbnail for ${video.title}`}
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          onError={() => setImgFailed(true)}
         />
+
+        {/* vinyl reveal: the picked record spins up, then fades into the thumbnail */}
+        {discColor && (
+          <motion.div
+            className="pointer-events-none absolute inset-0 z-10 grid place-items-center bg-card"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 0 }}
+            transition={{ delay: index * 0.07 + 0.55, duration: 0.35 }}
+          >
+            <motion.div
+              className="rounded-full"
+              style={{
+                width: "62%",
+                height: "62%",
+                background: `radial-gradient(circle, ${discColor} 0% 31%, #171717 32% 100%)`,
+              }}
+              initial={{ rotate: 0, scale: 0.7 }}
+              animate={{ rotate: 360, scale: 1.1 }}
+              transition={{ delay: index * 0.07, duration: 0.7, ease: "easeOut" }}
+            />
+          </motion.div>
+        )}
 
         <AnimatePresence>
           {isHovered && (

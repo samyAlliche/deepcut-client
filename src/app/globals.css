@@ -146,3 +146,47 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* ---------- Crate machine ---------- */
+@keyframes crate-idle {
+  0%, 100% { transform: rotate(var(--a, 0deg)); }
+  50% { transform: rotate(calc(var(--a, 0deg) + 1.5deg)); }
+}
+@keyframes crate-riffle {
+  0%, 100% { transform: rotate(0deg); }
+  35% { transform: rotate(7deg); }
+  75% { transform: rotate(-3.5deg); }
+}
+@keyframes crate-pop {
+  to { transform: translateY(var(--pop, -54px)); }
+}
+@keyframes crate-peek-rise {
+  to { transform: translateY(-15px); opacity: 1; }
+}
+
+.crate-machine * { transform-box: fill-box; }
+.crate-sleeve {
+  transform-origin: 50% 100%;
+  animation: crate-idle 5.2s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 0.28s);
+}
+.crate-machine[data-shuffling="true"] .crate-sleeve {
+  animation: crate-riffle 0.5s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 0.045s);
+}
+.crate-wrap.picked {
+  animation: crate-pop 0.9s cubic-bezier(0.2, 0.9, 0.28, 1.18) forwards;
+}
+.crate-peek { opacity: 0; }
+.crate-wrap.picked .crate-peek {
+  animation: crate-peek-rise 0.55s ease 0.5s forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .crate-sleeve,
+  .crate-wrap.picked,
+  .crate-wrap.picked .crate-peek {
+    animation: none !important;
+  }
+  .crate-wrap.picked { transform: translateY(-54px); }
+  .crate-wrap.picked .crate-peek { opacity: 1; }
+}

@@ -7,10 +7,13 @@ import Footer from "@/components/Footer/Footer";
 async function shuffleAction(value: number): Promise<Video[]> {
   "use server";
 
-  console.log(`Fetching on the server with value: ${value}`);
+  // Server actions are public endpoints: never trust the incoming value.
+  if (!Number.isInteger(value) || value < 1 || value > 10) {
+    throw new Error("Invalid count");
+  }
 
   const response = await fetch(
-    `http://deepcut.vercel.app/api/blindpicks?count=${value}`
+    `https://deepcut.vercel.app/api/blindpicks?count=${value}`
   );
   if (!response.ok) {
     throw new Error("Failed to fetch shuffled data");
