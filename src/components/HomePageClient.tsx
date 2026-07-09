@@ -210,8 +210,12 @@ const Subtitles = () => {
   };
   return (
     <motion.div
-      className="flex flex-col gap-2 justify-center text-center font-black"
-      exit={{ opacity: 0, y: -10, transition: { duration: 0.25 } }}
+      className="flex flex-col gap-2 justify-center text-center font-black overflow-hidden"
+      exit={{
+        opacity: 0,
+        height: 0,
+        transition: { duration: 0.35, ease: "easeInOut" },
+      }}
     >
       <motion.h2
         className="sm:text-xl md:text-2xl text-lg leading-tight"
