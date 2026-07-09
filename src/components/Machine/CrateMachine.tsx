@@ -170,7 +170,7 @@ export default function CrateMachine({
 
       <div ref={machineRef} className="relative w-full max-w-[370px] min-w-0">
         <svg
-          viewBox="0 0 360 440"
+          viewBox="0 60 360 380"
           className="crate-machine w-full h-auto"
           data-shuffling={isShuffling}
           role="img"
@@ -244,7 +244,7 @@ export default function CrateMachine({
         <div
           className="pointer-events-none absolute left-1/2"
           style={{
-            top: `${(321 / 440) * 100}%`,
+            top: `${((321 - 60) / 380) * 100}%`,
             transform: `translate(-50%, -50%) scale(${scale})`,
           }}
         >

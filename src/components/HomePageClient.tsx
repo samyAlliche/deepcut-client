@@ -83,7 +83,7 @@ export default function HomePageClient({
   }, [hasResults]);
 
   return (
-    <div className="flex flex-col items-center w-full min-h-[600px] gap-6 sm:gap-8 mt-4 sm:mt-0">
+    <div className="flex flex-col items-center w-full min-h-[600px] gap-4 sm:gap-5 mt-2 sm:mt-0">
       <AnimatePresence>{isIdle && <Subtitles key="subtitles" />}</AnimatePresence>
 
       {/* crate picker: choose which crates to dig in */}
